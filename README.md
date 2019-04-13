@@ -1,27 +1,25 @@
-# docker-hbase
-docker搭建hbase集群
-1. pull docker image
+1.拉码头图像
 sudo docker pull kiwenlau/hadoop:1.0
-2. clone github repository
+2.克隆github存储库
 git clone https://github.com/kiwenlau/hadoop-cluster-docker
-3. create hadoop network
+3.创建hadoop网络
 sudo docker network create --driver=bridge hadoop
-4. start container
+4.启动容器
 cd hadoop-cluster-docker
 sudo ./start-container.sh
-output:
+输出：
 
 start hadoop-master container...
 start hadoop-slave1 container...
 start hadoop-slave2 container...
 root@hadoop-master:~# 
-start 3 containers with 1 master and 2 slaves
-you will get into the /root directory of hadoop-master container
-5. start hadoop
+启动3个容器，包含1个主设备和2个从设备
+你将进入hadoop-master容器的/ root目录
+5.开始hadoop
 ./start-hadoop.sh
-6. run wordcount
+6.运行wordcount
 ./run-wordcount.sh
-output
+产量
 
 input file1.txt:
 Hello Hadoop
@@ -33,16 +31,16 @@ wordcount output:
 Docker    1
 Hadoop    1
 Hello    2
-Arbitrary size Hadoop cluster
-1. pull docker images and clone github repository
-do 1~3 like section A
+任意大小的Hadoop集群
+1.拉码头图像并克隆github存储库
+像A部分一样做1~3
 
-2. rebuild docker image
+2.重建码头图像
 sudo ./resize-cluster.sh 5
-specify parameter > 1: 2, 3..
-this script just rebuild hadoop image with different slaves file, which pecifies the name of all slave nodes
-3. start container
+指定参数> 1：2,3 ..
+这个脚本只是用不同的从属文件重建hadoop映像，它将所有从属节点的名称赋予特征
+3.启动容器
 sudo ./start-container.sh 5
-use the same parameter as the step 2
-4. run hadoop cluster
-do 5~6 like section A
+使用与步骤2相同的参数
+4.运行hadoop集群
+像A节那样做5~6个
