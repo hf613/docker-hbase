@@ -8,11 +8,8 @@ WORKDIR /root
 RUN apt-get update && apt-get install -y openssh-server wget
 
 # install jdk 1.8
-COPY jdk-8u201-linux-x64.tar.gz /root/
-COPY hadoop-2.7.2.tar.gz /root/
-COPY zookeeper-3.4.14.tar.gz /root/
-COPY hbase-2.1.4-bin.tar.gz /root/
-RUN mkdir -p /usr/lib/java && \
+RUN wget https://media.githubusercontent.com/media/hf613/download/master/jdk-8u201-linux-x64.tar.gz && \
+    mkdir -p /usr/lib/java && \
     tar -xzvf jdk-8u201-linux-x64.tar.gz -C /usr/lib/java/ && \
     rm jdk-8u201-linux-x64.tar.gz && \
     update-alternatives --install "/usr/bin/java" "java" "/usr/lib/java/jdk1.8.0_201/bin/java" 1 && \
@@ -21,17 +18,20 @@ RUN mkdir -p /usr/lib/java && \
 
 
 # install hadoop 2.7.2
-RUN tar -xzvf hadoop-2.7.2.tar.gz && \
+RUN wget https://media.githubusercontent.com/media/hf613/download/master/hadoop-2.7.2.tar.gz && \
+    tar -xzvf hadoop-2.7.2.tar.gz && \
     mv hadoop-2.7.2 /usr/local/hadoop && \
     rm hadoop-2.7.2.tar.gz
 	
 # install zookeeper 3.4.14
-RUN tar -xzvf zookeeper-3.4.14.tar.gz && \
+RUN wget https://media.githubusercontent.com/media/hf613/download/master/zookeeper-3.4.14.tar.gz && \
+    tar -xzvf zookeeper-3.4.14.tar.gz && \
     mv zookeeper-3.4.14 /usr/local/zookeeper && \
     rm zookeeper-3.4.14.tar.gz
 
 # install hbase 2.1.4
-RUN tar -xzvf hbase-2.1.4-bin.tar.gz && \
+RUN wget https://media.githubusercontent.com/media/hf613/download/master/hbase-2.1.4-bin.tar.gz && \
+    tar -xzvf hbase-2.1.4-bin.tar.gz && \
     mv hbase-2.1.4 /usr/local/hbase && \
     rm hbase-2.1.4-bin.tar.gz
 
